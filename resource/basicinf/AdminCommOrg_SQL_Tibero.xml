@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CommOrg">
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<resultMap id="CommOrgList" class="egovframework.admin.basicinf.service.CommOrg">
+		<result property="orgCd"      column="ORG_CD"       />
+		<result property="orgNm"      column="ORG_NM"       />
+		<result property="orgNmEng"   column="ORG_NM_ENG"       />
+		<result property="orgFullNm"   column="ORG_FULLNM"       />
+		<result property="orgCdTop"   column="ORG_CD_TOP"       />
+		<result property="orgCdPar"   column="ORG_CD_PAR"       />
+		<result property="orgLvl"	  column="ORG_LVL"       />
+		<result property="Level"	  column="ORG_LVL"       />
+	</resultMap>
+	
+	<resultMap id="CommOrgListTree" class="egovframework.admin.basicinf.service.CommOrg">
+		<result property="orgCd"      column="ORG_CD"       />
+		<result property="orgNm"      column="ORG_NM"       />
+		<result property="orgNmEng"   column="ORG_NM_ENG"       />
+		<result property="orgTypeCd"  column="TYPE_CD"       />
+		<result property="orgTypeNm"  column="TYPE_NM"       />
+		<result property="orgLvl"	  column="ORG_LVL"       />
+		<result property="Level"	  column="ORG_LVL"       />
+		<result property="useYn"	  column="USE_YN"       />
+		<result property="vOrder"	  column="V_ORDER"       />
+	</resultMap>
+	
+	<resultMap id="commOrgRetr" class="egovframework.admin.basicinf.service.CommOrg">
+		<result property="orgCd"      column="ORG_CD"/>
+		<result property="orgNm"      column="ORG_NM"/>
+		<result property="orgNmEng"   column="ORG_NM_ENG"/>
+		<result property="orgCdTopCd"   column="ORG_CD_TOP"/>
+		<result property="orgCdTopNm"   column="ORG_CD_TOP_NM"/>
+		<result property="orgCdParCd"   column="ORG_CD_PAR"/>
+		<result property="orgCdParNm"   column="ORG_CD_PAR_NM"/>
+		<result property="orgFullNmEng"  column="ORG_FULLNM_ENG"/>
+		<result property="orgFullNm"  column="ORG_FULLNM"/>
+		<result property="orgLvl"	  column="ORG_LVL"/>
+		<result property="orgTypeCd"  column="TYPE_CD"/>
+		<result property="orgTypeNm"  column="TYPE_NM"/>
+		<result property="orgAddr"  column="ORG_ADDR"/>
+		<result property="orgAddrEng"  column="ORG_ADDR_ENG"/>
+		<result property="orgUrl"  column="ORG_URL"/>
+		<result property="mngId"  column="MNG_ID"/>
+		<result property="useYn"	  column="USE_YN"/>
+	</resultMap>
+	
+	<resultMap id="OrgFullNm" class="egovframework.admin.basicinf.service.CommOrg">
+		<result column="ORG_CD" property="orgCd" />
+		<result column="ORG_FULLNM" property="orgFullNm" />
+		<result column="ORG_FULLNM_ENG" property="orgFullNmEng" />
+	</resultMap>
+
+	
+	<select id="CommOrgDAO.selectCommOrgListAll" parameterClass="egovframework.admin.basicinf.service.CommOrg" resultMap="CommOrgList" >
+		/*조직정보 팝업*/
+		SELECT A.ORG_CD, A.ORG_NM, A.ORG_FULLNM, A.ORG_NM_ENG, A.ORG_CD_TOP, A.ORG_CD_PAR, LEVEL AS ORG_LVL
+		FROM TB_COMM_ORG A
+		WHERE 1=1
+		AND A.USE_YN ='Y'
+		<isNotEmpty property="orgNm" prepend="AND">
+			A.ORG_NM LIKE '%'||#orgNm#||'%'
+		</isNotEmpty>
+		START WITH ORG_CD_PAR IS NULL
+		CONNECT BY PRIOR ORG_CD = ORG_CD_PAR
+		ORDER SIBLINGS BY V_ORDER
+	</select> 
+	
+	
+	<select id="CommOrgDAO.selectCommOrgListTree" parameterClass="egovframework.admin.basicinf.service.CommOrg" resultMap="CommOrgListTree" >
+		/*목록 조회*/
+		SELECT ORG_CD, ORG_NM, ORG_NM_ENG, TYPE_CD, '' TYPE_NM, LEVEL AS ORG_LVL, DECODE(USE_YN, 'Y', '1', '0') USE_YN, V_ORDER  
+		FROM (SELECT * FROM TB_COMM_ORG
+		WHERE 1=1
+		<isNotEmpty property="searchWord" >
+			AND ORG_NM LIKE '%'||#searchWord#||'%'
+		</isNotEmpty>
+		<isEqual property="useYn" compareValue="Y" >
+			AND USE_YN = 'Y'
+		</isEqual>
+		<isEqual property="useYn" compareValue="N" >
+			AND USE_YN = 'N'
+		</isEqual>
+		)
+		START WITH ORG_CD_PAR IS NULL
+		CONNECT BY PRIOR ORG_CD = ORG_CD_PAR
+		ORDER SIBLINGS BY V_ORDER
+	</select>
+	
+	<select id="CommOrgDAO.selectCommOrgCdDup" parameterClass="egovframework.admin.basicinf.service.CommOrg" resultClass="java.lang.Integer" >
+		SELECT   COUNT(*) AS CNT
+		  FROM   TB_COMM_ORG ORG 
+		 WHERE   ORG_CD = #orgCd#
+	</select>
+	
+	<select id="CommOrgDAO.commOrgRetr" parameterClass="egovframework.admin.basicinf.service.CommOrg" resultMap="commOrgRetr" >
+		SELECT   ORG.ORG_CD
+		       , ORG.ORG_NM
+		       , ORG.ORG_NM_ENG
+		       , ORG.ORG_CD_TOP
+		       , (SELECT ORG_NM FROM TB_COMM_ORG A WHERE A.ORG_CD = ORG.ORG_CD_TOP) ORG_CD_TOP_NM
+		       , ORG.ORG_CD_PAR
+		       , (SELECT ORG_NM FROM TB_COMM_ORG A WHERE A.ORG_CD = ORG.ORG_CD_PAR) ORG_CD_PAR_NM
+		       , ORG.ORG_FULLNM
+		       , ORG.ORG_FULLNM_ENG
+		       , ORG.ORG_LVL
+		       , ORG.TYPE_CD
+		       , CD.DITC_NM AS TYPE_NM
+		       , ORG.ORG_ADDR
+		       , ORG.ORG_ADDR_ENG
+		       , ORG.ORG_URL
+		       , ORG.MNG_ID
+		       , ORG.USE_YN
+		  FROM   TB_COMM_ORG ORG LEFT JOIN TB_COMM_CODE CD 
+								 ON ORG.TYPE_CD = CD.DITC_CD 
+								 AND CD.GRP_CD = 'C1001'
+		 WHERE   ORG.ORG_CD = #orgCd#
+	</select>
+	
+	<update id="CommOrgDAO.insertCommOrg" parameterClass="egovframework.admin.basicinf.service.CommOrg">
+		
+		INSERT INTO TB_COMM_ORG ORG
+		(
+			ORG_CD
+		  , ORG_NM
+		  , ORG_NM_ENG
+		  , ORG_CD_PAR
+		  , ORG_CD_TOP
+		  , ORG_FULLNM
+		  , ORG_FULLNM_ENG
+		  , ORG_LVL
+		  , TYPE_CD
+		  , ORG_ADDR
+		  , ORG_ADDR_ENG
+		  , ORG_URL
+		  , MNG_ID
+		  , USE_YN
+		  , REG_ID
+		  , REG_DTTM
+		  , UPD_ID
+		  , UPD_DTTM
+		)
+		VALUES
+		(
+			#orgCd#
+		  , #orgNm#
+		  , #orgNmEng#
+		  , #orgCdParCd#
+		  <isEmpty property="orgCdParCd" >
+		  , #orgCd#
+		  , #orgNm#
+		  , #orgNmEng#
+		  </isEmpty>
+		  <isNotEmpty property="orgCdParCd" >
+		  <![CDATA[
+		  , #orgCdTopCd#
+		  , ( SELECT  
+	           LTRIM(sys_connect_by_path(C.org_nm,'>'),'>') || '>' || #orgFullNm# 
+	       
+				FROM   TB_comm_org C 
+			   WHERE  1=1      
+				 AND c.org_cd = #orgCdParCd#
+			   START WITH ( C.org_cd_par IS NULL  ) 
+			 CONNECT BY PRIOR C.org_cd = C.org_cd_par
+		  )
+		  , ( SELECT  
+	           LTRIM(sys_connect_by_path(C.org_nm_eng,'>'),'>') || '>' || #orgFullNmEng# 
+				FROM   TB_comm_org C 
+			   WHERE  1=1     
+				 AND c.org_cd = #orgCdParCd#
+			   START WITH ( C.org_cd_par IS NULL  ) 
+			 CONNECT BY PRIOR C.org_cd = C.org_cd_par
+		  )
+		  ]]>
+		  </isNotEmpty>
+		  , #orgLvl#
+		  , #orgType#
+		  , #orgAddr#
+		  , #orgAddrEng#
+		  , #orgUrl#
+		  , #mngId#
+		  , #useYn#
+		  , #sessionUsrId#
+		  , SYSDATE
+		  , #sessionUsrId#
+		  , SYSDATE	
+		)
+		
+	</update>
+	
+	<update id="CommOrgDAO.deleteLowCommOrg" parameterClass="egovframework.admin.basicinf.service.CommOrg" >
+		<![CDATA[
+		DELETE FROM   TB_COMM_ORG A
+		 WHERE   EXISTS
+		(
+			SELECT   1
+			  FROM   TB_COMM_ORG B
+			 WHERE   1=1 
+			   AND   A.ORG_CD = B.ORG_CD
+		             START WITH ORG_CD = #orgCd#
+					 CONNECT BY PRIOR ORG_CD = ORG_CD_PAR
+		)
+		]]>
+	</update>
+	
+	<update id="CommOrgDAO.updateLowUseYnCommOrg" parameterClass="egovframework.admin.basicinf.service.CommOrg" >
+		<![CDATA[
+		UPDATE   TB_COMM_ORG A 
+		   SET   A.USE_YN = #useYn#
+		 WHERE   EXISTS
+		(
+			SELECT 1
+			  FROM TB_COMM_ORG B
+			 WHERE 1=1 
+			   AND A.ORG_CD = B.ORG_CD
+			  START WITH ORG_CD = #orgCd#
+			CONNECT BY PRIOR ORG_CD = ORG_CD_PAR
+		)
+		]]>
+	</update>
+	
+	<update id="CommOrgDAO.updateCommOrg" parameterClass="egovframework.admin.basicinf.service.CommOrg" >
+		UPDATE   TB_COMM_ORG
+		   SET   ORG_NM = #orgNm#
+		       , ORG_NM_ENG = #orgNmEng#
+		       , ORG_CD_TOP = #orgCdTopCd#
+		       , ORG_CD_PAR = #orgCdParCd#
+		       , ORG_LVL = #orgLvl#
+		       , USE_YN = #useYn#
+		       <isNotEmpty property="orgType">
+				, TYPE_CD = #orgType#
+		       </isNotEmpty>
+		       <isNotEmpty property="orgFullNm">
+		       	, ORG_ADDR = #orgAddr#
+		       </isNotEmpty>
+		       <isNotEmpty property="orgFullNmEng">
+		       	, ORG_ADDR_ENG = #orgAddrEng#
+		       </isNotEmpty>
+		       <isNotEmpty property="orgUrl">
+		       	, ORG_URL = #orgUrl#
+		       </isNotEmpty>
+		       <isNotEmpty property="mngId">
+		       	, MNG_ID = #mngId#
+		       </isNotEmpty>
+		       , UPD_ID = #sessionUsrId#
+		       , UPD_DTTM = SYSDATE 
+		 WHERE   ORG_CD = #orgCd# 
+	</update>
+	
+	<update id="CommOrgDAO.commOrgListUpdateTreeOrder" parameterClass="egovframework.admin.basicinf.service.CommOrg" >
+		<![CDATA[
+		UPDATE   TB_COMM_ORG A 
+		   SET   A.V_ORDER = #vOrder#
+		 WHERE   ORG_CD = #orgCd#        
+		]]>
+	</update>
+		
+	<!-- 현재 조직명 변경시 하위조직명도 변경하기 위해 해당하는 하위조직들을 전부 조회한다.  -->
+	<select id="CommOrgDAO.getOrgFullNmQuery" parameterClass="egovframework.admin.basicinf.service.CommOrg" resultMap="OrgFullNm">
+			SELECT
+			LTRIM(sys_connect_by_path(C.ORG_NM,'>'),'>') AS ORG_FULLNM,
+			LTRIM(sys_connect_by_path(C.ORG_NM_ENG,'>'),'>') AS ORG_FULLNM_ENG,
+			C.ORG_CD
+		FROM TB_COMM_ORG C
+		WHERE 1=1 
+		<!-- 최상위 분류가 아닐 경우에는 C.ORG_CD 가 orgCdTopCd이여야함 -->
+		<isNotEmpty property="orgCdParCd">
+			START WITH ( C.ORG_CD = #orgCdTopCd#)
+		</isNotEmpty>
+		<!-- 최상위 분류일 경우에는 C.ORG_CD 가 orgCd여야함 -->
+		<isEmpty  property="orgCdParCd">
+			START WITH ( C.ORG_CD = #orgCd#)
+		</isEmpty>
+			CONNECT BY PRIOR C.ORG_CD = C.ORG_CD_PAR
+			ORDER SIBLINGS BY C.V_ORDER, C.ORG_NM
+	</select>
+	
+	<!-- 현재 조직명 변경시 하위조직명도 전부 변경한다. -->
+	<update id="CommOrgDAO.actOrgFullNmUpd" parameterClass="egovframework.admin.basicinf.service.CommOrg">
+		UPDATE TB_COMM_ORG A SET 
+			ORG_FULLNM = #orgFullNm#
+		, 	ORG_FULLNM_ENG = #orgFullNmEng#
+		WHERE ORG_CD = #orgCd#
+	</update>
+	
+</sqlMap>

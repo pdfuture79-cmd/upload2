@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CommUsrAdmin">
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<resultMap id="CommUsrList" class="egovframework.admin.basicinf.service.CommUsr">
+		<result property="usrCd"      column="USR_CD"       />
+		<result property="usrNm"      column="USR_NM"       />
+		<result property="orgCd"      column="ORG_CD"       />
+		<result property="accYn"      column="ACC_YN"       />
+		<result property="accCd"      column="ACC_CD"       />
+	</resultMap>
+	
+	<resultMap id="commUsrAdminPosPopList" class="egovframework.admin.basicinf.service.CommUsrAdmin">
+		<result property="usrCd"   			column="USR_CD"/>
+		<result property="usrNm"   			column="USR_NM"/>
+		<result property="usrNmEng"   		column="USR_NM_ENG"/>
+		<result property="orgCd"   			column="ORG_CD"/>
+		<result property="orgNm"   			column="ORG_NM"/>
+		<result property="jobCd"			column="JOB_CD"/>
+		<result property="deptNm"			column="DEPT_NM"/>
+	</resultMap>
+	
+	<resultMap id="commUsrAdminPopList" class="egovframework.admin.basicinf.service.CommUsrAdmin">
+		<result property="usrCd"   			column="USR_CD"     />
+		<result property="usrNm"   			column="USR_NM"     />
+		<result property="usrNmEng"   		column="USR_NM_ENG" />
+		<result property="orgCd"   			column="ORG_CD"     />
+		<result property="orgNm"   			column="ORG_NM"      />
+		<result property="deptNm"			column="DEPT_NM"     />
+		<result property="moisUsrId"        column="MOIS_USR_ID" />
+	</resultMap>
+	
+	<resultMap id="commUsrAdminInitialPw" class="egovframework.admin.basicinf.service.CommUsrAdmin">
+		<result property="initialPw"   		column="INITIAL_PW"/>
+	</resultMap>
+	
+	<resultMap id="commUsrAdminList" class="egovframework.admin.basicinf.service.CommUsrAdmin">
+		<result property="usrCd"   			column="USR_CD"/>
+		<result property="usrId"   			column="USR_ID"/>
+		<result property="usrNm"   			column="USR_NM"/>
+		<result property="usrNmEng"   		column="USR_NM_ENG"/>
+		<result property="orgCd"      		column="ORG_CD"/>
+		<result property="orgNm"      		column="ORG_NM"/>
+		<result property="jobNm"      		column="JOB_NM"/>
+		<result property="accCd"      		column="ACC_CD"/>
+		<result property="accNm"      		column="ACC_NM"/>
+		<result property="usrTel"      		column="USR_TEL"/>
+		<result property="accokYn"      	column="ACCOK_YN"/>
+		<result property="accokDttm"     	column="ACCOK_DTTM"/>
+		<result property="deptNm"     	    column="DEPT_NM"/>
+		<result property="jobCd"     	    column="JOB_CD"/>
+		<result property="regDttm"          column="REG_DTTM"/>
+	</resultMap>
+	
+	<resultMap id="commUsrAdminDtlInfo" class="egovframework.admin.basicinf.service.CommUsrAdmin">
+		<result property="usrId"   			column="USR_ID"/>
+		<result property="usrNm"   			column="USR_NM"/>
+		<result property="usrCd"   			column="USR_CD"/>
+		<result property="jobCd"      		column="JOB_CD"/>
+		<result property="jobNm"      		column="JOB_NM"/>
+		<result property="orgCd"      		column="ORG_CD"/>
+		<result property="orgNm"      		column="ORG_NM"/>
+		<result property="accCd"      		column="ACC_CD"/>
+		<result property="accNm"      		column="ACC_NM"/>
+		<result property="usrEmail"      	column="USR_EMAIL"/>
+		<result property="emailYn"      	column="EMAIL_YN"/>
+		<result property="usrTel"      		column="USR_TEL"/>
+		<result property="usrHp"      		column="USR_HP"/>
+		<result property="hpYn"      		column="HP_YN"/>
+		<result property="usrPw"      		column="USR_PW"/>
+		<result property="accokYn"      	column="ACCOK_YN"/>
+		<result property="accokYnDesc"      column="ACCOK_YN_DESC"/>
+		<result property="accokDttm"     	column="ACCOK_DTTM"  />
+		<result property="usrPki"     		column="USR_PKI"     />
+		<result property="pkiDttm"     		column="PKI_DTTM"    />
+		<result property="hpYn"     		column="HP_YN"       />
+		<result property="deptNm"     		column="DEPT_NM"     />
+		<result property="moisUsrId"        column="MOIS_USR_ID" />
+	</resultMap>	
+	
+	<select id="CommUsrDAO.selectCommUsrAdminCheck" parameterClass="egovframework.admin.basicinf.service.CommUsr" resultMap="CommUsrList" >
+			SELECT   USR_CD
+					,USR_NM
+			        ,ORG_CD         
+			        ,ACC_YN
+			        ,ACC_CD
+		  FROM TB_COMM_USR
+		 WHERE USR_ID = #usrId#
+		   AND USE_YN ='Y'
+		   AND ACC_YN ='Y'
+	</select>
+	
+	<!-- 직원명 팝업 조회 -->
+	<select id="CommUsrAdminDAO.selectCommUsrAdminPopList" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" resultMap="commUsrAdminPopList" >
+		SELECT USR_CD
+		     , USR_NM
+		     , USR_NM_ENG
+		     , DEPT_NM
+		     , US.ORG_CD
+		     , ORG.ORG_NM
+		     , MOIS_USR_ID
+		  FROM TB_COMM_USR US 
+		       INNER JOIN TB_COMM_ORG ORG
+		          ON US.ORG_CD = ORG.ORG_CD
+		         AND ORG.USE_YN = 'Y'
+		 WHERE 1 = 1
+		   AND US.USE_YN = 'Y'
+	       <isEqual property="usrGb" compareValue="1" >
+	           AND US.ACCOK_YN = 'N'		
+	       </isEqual>
+           <isNotEqual property="usrGb" compareValue="3" >
+		       <isNotEmpty property="usrNm" >
+		       	   AND USR_NM LIKE '%'||#usrNm#||'%'
+		       </isNotEmpty>
+		       <isNotEmpty property="orgCd">
+		       	   AND US.ORG_CD = #orgCd#
+		       </isNotEmpty>
+		       <isNotEmpty property="accokYn">
+	               AND US.ACCOK_YN = #accokYn#
+	           </isNotEmpty>
+           </isNotEqual>
+            <isEqual property="usrGb" compareValue="3" >
+               <isNotEqual property="accCd" compareValue="SYS">
+           			<isNotEmpty property="usrNm" >
+			       	   AND USR_NM LIKE '%'||#usrNm#||'%'
+			       	</isNotEmpty>
+			       	<isNotEmpty property="orgCd">
+			       	   AND US.ORG_CD = #orgCd#
+			       </isNotEmpty>
+			       	 <isNotEmpty property="accokYn">
+		               AND US.ACCOK_YN = #accokYn#
+		           </isNotEmpty>
+	          </isNotEqual>    
+           </isEqual>
+          
+	</select> 	
+	
+	<!-- 직원명 팝업 조회 직책추가버전-->
+	<select id="CommUsrAdminDAO.selectCommUsrAdminPosPopList" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" resultMap="commUsrAdminPosPopList" >
+		SELECT   USR_CD
+		       , USR_NM
+		       , USR_NM_ENG
+		       , US.ORG_CD
+		       , ORG.ORG_NM
+		       , JOB_CD
+		       , DEPT_NM
+		  FROM   TB_COMM_USR US INNER JOIN TB_COMM_ORG ORG
+		                          ON US.ORG_CD = ORG.ORG_CD
+		                         AND ORG.USE_YN = 'Y'
+		 WHERE   1=1
+		   AND   US.USE_YN = 'Y'
+		   		<isEqual property="usrGb" compareValue="1" >
+				   AND   US.ACCOK_YN = 'N'		
+		   		</isEqual>
+		   		<isNotEmpty property="usrNm" prepend="AND">
+					USR_NM LIKE '%'||#usrNm#||'%'
+				</isNotEmpty>
+				<isNotEmpty property="orgCd">
+					AND US.ORG_CD = #orgCd#
+				</isNotEmpty>
+				<isNotEmpty property="accokYn">
+               		AND US.ACCOK_YN = #accokYn#
+           		</isNotEmpty>
+	</select> 
+	
+	<!-- 직원명 전체리스트 -->
+	<select id="CommUsrAdminDAO.selectCommUsrAdminListAll" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" resultMap="commUsrAdminList" >
+		SELECT   USR_CD
+		       , USR_NM
+		       , USR_NM_ENG
+		       , RPAD(SUBSTR(USR_ID, 1, 3), LENGTH(USR_ID), '*') AS USR_ID 
+		       , JOB_CD
+		       , C1.DITC_NM JOB_NM
+		       , US.ORG_CD
+		       , DECODE(US.ORG_CD, NULL, US.ORG_NM, ORG.ORG_FULLNM) AS ORG_NM
+		       , ACC_CD
+		       , C2.DITC_NM AS ACC_NM
+		       , USR_TEL
+		       , DECODE(US.ACCOK_YN, 'Y', 1, 0) ACCOK_YN
+		       , ACCOK_DTTM
+		       , DEPT_NM
+		       , US.REG_DTTM
+		       , US.USE_YN
+		  FROM TB_COMM_USR US 
+		       LEFT JOIN TB_COMM_CODE C1
+		         ON US.JOB_CD = C1.DITC_CD
+		        AND C1.GRP_CD = 'C1003' 
+		       LEFT JOIN TB_COMM_CODE C2
+		         ON US.ACC_CD = C2.DITC_CD
+		        AND C2.GRP_CD = 'C1002'
+		       LEFT JOIN TB_COMM_ORG ORG
+		         ON US.ORG_CD = ORG.ORG_CD
+		        AND ORG.USE_YN = 'Y'
+		 WHERE 1 = 1
+		 AND US.USE_YN = 'Y'
+		   AND US.ACC_YN = 'Y'
+		   <isEqual property="authAccCd" compareValue="CM">
+		        <!-- 시군관리자  -->
+		      	AND US.ORG_CD = #authOrgCd#
+		    </isEqual>
+		   
+		   <isNotEmpty property="searchWord" >
+		      AND US.USR_NM LIKE '%'||#searchWord#||'%'
+		   </isNotEmpty>
+		   <isNotEmpty property="accCd" >
+		   	  AND US.ACC_CD = #accCd#
+		   </isNotEmpty>
+		   <isNotEmpty property="orgNm" >
+		   	  AND ORG.ORG_NM LIKE '%'||#orgNm#||'%'
+		   </isNotEmpty>
+		   <isNotEmpty property="orgCd" >
+              AND ORG.ORG_CD = #orgCd# 
+           </isNotEmpty>
+		   
+		   <isEqual property="accokYn" compareValue="Y" >
+		      AND ACCOK_YN = 'Y'
+		   </isEqual>	
+		   <isEqual property="accokYn" compareValue="N" >
+		      AND ACCOK_YN = 'N'
+		   </isEqual>
+		   <isNotEqual property="authAccCd" compareValue="SYS" >
+		      ORDER BY ACCOK_YN ASC, USR_NM ASC
+		   </isNotEqual>
+		   <isEqual property="authAccCd" compareValue="SYS" >
+			     <isNotEmpty property="iOrderBy">
+			   ORDER  BY $iOrderBy$
+			   </isNotEmpty> 
+		   </isEqual>
+		   
+		 
+	</select>
+	
+	<!-- 직원명 전체리스트 갯수 -->
+	<select id="CommUsrAdminDAO.selectCommUsrAdminListAllCnt" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" resultClass="java.lang.Integer">
+		SELECT   COUNT(*)
+		  FROM   TB_COMM_USR US LEFT JOIN TB_COMM_CODE C1
+		                         ON US.JOB_CD = C1.DITC_CD
+		                        AND C1.GRP_CD = 'C1003' 
+		                        LEFT JOIN TB_COMM_CODE C2
+		                         ON US.ACC_CD = C2.DITC_CD
+		                        AND C2.GRP_CD = 'C1002'
+		                        LEFT OUTER JOIN TB_COMM_ORG ORG
+		                         ON US.ORG_CD = ORG.ORG_CD
+		                        AND ORG.USE_YN = 'Y'
+		 WHERE   1=1
+		 AND  US.USE_YN = 'Y'
+		 	AND  US.ACC_YN = 'Y'
+		 	<isEqual property="authAccCd" compareValue="CM">
+		      	AND US.ORG_CD = #authOrgCd#
+		    </isEqual>
+		   
+		    <isNotEmpty property="searchWord" >
+		     	AND US.USR_NM LIKE '%'||#searchWord#||'%'
+		    </isNotEmpty>
+		    <isNotEmpty property="accCd" >
+		    	AND US.ACC_CD = #accCd#
+		    </isNotEmpty>
+		    <isNotEmpty property="orgNm" >
+		    	AND ORG.ORG_NM LIKE '%'||#orgNm#||'%'
+		    </isNotEmpty>
+		    <isNotEmpty property="orgCd" >
+                AND ORG.ORG_CD = #orgCd# 
+            </isNotEmpty>
+		    <isEqual property="accokYn" compareValue="Y" >
+		     	AND ACCOK_YN = 'Y'
+		    </isEqual>	
+		    <isEqual property="accokYn" compareValue="N" >
+		     	AND ACCOK_YN = 'N'
+		    </isEqual>
+	</select>
+	
+	<!-- 직원명ID 중복체크 -->
+	<select id="CommUsrAdminDAO.idDup" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" resultClass="java.lang.Integer">
+		SELECT   COUNT(*)
+		  FROM   TB_COMM_USR
+		 WHERE   USR_ID = #usrId#
+	</select>
+	
+	<!-- 직원 단건조회 -->
+	<select id="CommUsrAdminDAO.selectCommUsrAdminDtlInfo" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" resultMap="commUsrAdminDtlInfo" >
+<![CDATA[
+		SELECT   USR_NM
+		       , RPAD(SUBSTR(USR_ID, 1, 3), LENGTH(USR_ID), '*') AS USR_ID 
+		       , USR_CD
+			   , JOB_CD
+		       , C1.DITC_NM JOB_NM
+		       , US.ORG_CD
+		       , DECODE(US.ORG_CD, NULL, US.ORG_NM, ORG.ORG_FULLNM) AS ORG_NM
+		       , ACC_CD
+		       , C2.DITC_NM ACC_NM
+		       , USR_EMAIL AS USR_EMAIL
+		       , EMAIL_YN
+		       , HP_YN
+		       , USR_TEL
+		       , USR_HP AS USR_HP
+		       , HP_YN
+		       , DECODE(US.ACCOK_YN, 'Y', '사용', '미사용') ACCOK_YN_DESC
+		       , '' USR_PW
+		       , ACCOK_YN
+		       , DECODE(NVL(TO_CHAR(ACCOK_DTTM, 'YYYY/MM/DD HH24:MI:SS'), 'N'), 'N', '미승인', TO_CHAR(ACCOK_DTTM, 'YYYY/MM/DD HH24:MI:SS')) ACCOK_DTTM
+		       , DECODE(NVL(USR_PKI, 'N'), 'N', '미등록', '등록') USR_PKI
+		       , DECODE(NVL(TO_CHAR(PKI_DTTM, 'YYYY/MM/DD HH24:MI:SS'), 'N'), 'N', '', '(등록일자 : ' || TO_CHAR(PKI_DTTM, 'YYYY/MM/DD HH24:MI:SS') || ')') PKI_DTTM
+		       , DEPT_NM
+		       , MOIS_USR_ID
+		  FROM TB_COMM_USR US 
+		       LEFT JOIN TB_COMM_CODE C1
+		         ON US.JOB_CD = C1.DITC_CD
+		        AND C1.GRP_CD = 'C1003' 
+		       LEFT JOIN TB_COMM_CODE C2
+		         ON US.ACC_CD = C2.DITC_CD
+		        AND C2.GRP_CD = 'C1002'
+		       LEFT OUTER JOIN TB_COMM_ORG ORG
+		         ON US.ORG_CD = ORG.ORG_CD
+		        AND ORG.USE_YN = 'Y'
+		 WHERE 1 = 1
+		   AND USR_CD = #usrCd#
+		]]>
+</select>
+	
+	<!-- 신규등록(승인도 같이 처리함) -->
+	<update id="CommUsrAdminDAO.save" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin">
+		UPDATE   TB_COMM_USR USR
+		   SET   USR_ID = #usrId#
+		       , ACC_CD = #accCd#
+		       , ACCOK_YN = 'Y'
+		       , ACCOK_DTTM = SYSDATE
+		       , ACCOK_USR_ID = #sessionUsrId#
+		       , ACC_YN = 'Y'
+		       , USR_PW = #usrPw#
+		       , PW_DTTM = SYSDATE
+		       , UPD_ID = #sessionUsrId#
+		       , UPD_DTTM = SYSDATE
+		 WHERE   USR_CD = #usrCd#
+	</update>
+	
+	<!-- 담당자 승인 -->
+	<update id="CommUsrAdminDAO.approval" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin">
+		UPDATE   TB_COMM_USR USR
+		   SET   ACCOK_YN = 'Y'
+		       , ACCOK_DTTM = SYSDATE
+		       , ACCOK_USR_ID = #sessionUsrId#
+		       , UPD_ID = #sessionUsrId#
+		       , UPD_DTTM = SYSDATE
+		 WHERE   USR_CD = #usrCd#
+	</update>
+	
+	<!-- 담당자 승인 취소 -->
+	<update id="CommUsrAdminDAO.approvalCancel" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin">
+		UPDATE   TB_COMM_USR USR
+		   SET   ACCOK_YN = 'N'
+		       , ACCOK_CN_DTTM = SYSDATE
+		       , ACCOK_DTTM = ''
+		       , ACCOK_USR_ID = #sessionUsrId#
+		       , UPD_ID = #sessionUsrId#
+		       , UPD_DTTM = SYSDATE
+		 WHERE   USR_CD = #usrCd#
+	</update>
+	
+	<!-- 내용 변경 -->
+	<update id="CommUsrAdminDAO.update" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin">
+		UPDATE TB_COMM_USR USR
+		   SET ACC_CD      = #accCd#
+		     , UPD_ID      = #sessionUsrId#
+		     , UPD_DTTM    = SYSDATE
+		     , MOIS_USR_ID = #moisUsrId#
+		     , ACCOK_YN = 'Y'
+		     , ACCOK_DTTM = SYSDATE
+		     , ACCOK_USR_ID = #sessionUsrId#
+		 WHERE USR_CD = #usrCd#
+	</update>
+	
+	<!-- 비밀번호 초기화 랜덤문자 조회 -->
+	<select id="CommUsrAdminDAO.randomPw" resultClass="java.lang.String">
+		SELECT DBMS_RANDOM.STRING('X', 10) AS INITIAL_PW FROM DUAL
+	</select>
+	
+	<!-- 비밀번호 초기화 -->
+	<update id="CommUsrAdminDAO.initialPw" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin">
+		UPDATE   TB_COMM_USR USR
+		   SET   USR_PW = #initialPw#
+		       , PW_DTTM = SYSDATE
+		       , FAIL_CNT = 0
+		       , UPD_ID = #sessionUsrId#
+		       , UPD_DTTM = SYSDATE
+		 WHERE   USR_CD = #usrCd#
+	</update>
+	
+	<resultMap id="commOrgMngUsrList" class="egovframework.admin.basicinf.service.CommUsrAdmin">
+	   <result column="USR_CD"       property="usrCd"    />
+	   <result column="USR_ID"       property="usrId"    />
+	   <result column="USR_NM"       property="usrNm"    />
+	   <result column="ORG_CD"       property="orgCd"    />
+	   <result column="ORG_NM"       property="orgNm"    /> 
+	   <result column="ACC_CD"       property="accCd"    /> 
+	   <result column="JOB_CD"       property="jobCd"    />
+	   <result column="DEPT_NM"      property="deptNm"   />
+	   <result column="USR_TEL"      property="usrTel"   />
+	   <result column="USR_TEL"      property="usrTel"   />
+	   <result column="USR_EMAIL"    property="usrEmail" />
+	   <result column="MOIS_USR_ID"  property="moisUsrId" />
+	</resultMap>
+	
+	<!-- 시군관리자 조회 -->
+	<select id="CommUsrAdminDAO.selectOrgMngUsrList" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" resultMap="commOrgMngUsrList" >
+        
+        SELECT A.USR_CD
+             , A.USR_ID
+             , A.USR_NM             
+             , A.ORG_CD
+             , B.ORG_NM
+             , A.ACC_CD
+             , A.JOB_CD
+             , A.DEPT_NM
+             , A.USR_TEL
+             , A.USR_EMAIL
+             , A.MOIS_USR_ID
+          FROM TB_COMM_USR A
+               INNER JOIN TB_COMM_ORG B
+                  ON B.ORG_CD = A.ORG_CD
+                 AND B.USE_YN = 'Y'
+         WHERE 1 = 1
+           AND A.USE_YN = 'Y'
+           AND A.ACCOK_YN = 'Y'      
+           AND A.ACC_CD = 'CM'     
+           <isNotEmpty property="usrNm" >
+               AND A.USR_NM LIKE '%'||#usrNm#||'%'
+           </isNotEmpty>
+           <isNotEmpty property="orgCd">
+               AND A.ORG_CD = #orgCd#
+           </isNotEmpty>
+           <isNotEmpty property="orgNm">
+               AND B.ORG_NM LIKE #orgNm# ||'%'
+           </isNotEmpty>
+         ORDER BY B.ORG_NM
+                , A.USR_NM  
+    </select> 
+    
+    <!-- 관리자로 업데이트 -->
+    <update id="CommUsrAdminDAO.updateMngOrgUser" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" >
+        
+        UPDATE TB_COMM_USR
+           SET ACC_CD = 'CM'
+         WHERE USE_YN   = 'Y'
+           AND ACCOK_YN = 'Y'
+           AND ORG_CD = #orgCd#
+           AND USR_CD = #usrCd#    
+    </update>
+	
+	<!-- 해당기관의 변경대상 아닌사람 데이터등록자로 모두 업데이트-->
+    <update id="CommUsrAdminDAO.updateNotOrgCmUsr" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin" >
+        
+        UPDATE TB_COMM_USR
+           SET ACC_CD = 'DM'
+         WHERE USE_YN   = 'Y'
+           AND ACCOK_YN = 'Y'           
+           AND #accCd# = 'CM' 
+           AND ORG_CD = #orgCd#
+           AND USR_CD != #usrCd#
+          
+    </update>
+    
+    <!-- 사용자 삭제 -->
+	<update id="CommUsrAdminDAO.delete" parameterClass="egovframework.admin.basicinf.service.CommUsrAdmin">
+		UPDATE TB_COMM_USR
+		SET USE_YN = 'N'
+			,UPD_ID = #sessionUsrId#
+			,UPD_DTTM = SYSDATE
+		 WHERE USR_CD = #usrCd#
+	</update>
+</sqlMap>

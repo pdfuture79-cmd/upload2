@@ -1,0 +1,1468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="BbsList">
+<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+<typeAlias alias="clobHandler" type="com.ibatis.sqlmap.engine.type.ClobTypeHandlerCallback" />
+
+	<resultMap id="BbsListAll" class="egovframework.admin.bbs.service.BbsList">
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="SEQ" property="seq" />
+		<result column="P_SEQ" property="pSeq" />
+		<result column="LIST_SUB_CD" property="listSubCd" />
+		<result column="BBS_TIT" property="bbsTit" />
+		<result column="NOTICE_YN" property="noticeYn" />
+		<result column="USER_ID" property="userId" />
+		<result column="USER_NM" property="userNm" />
+		<result column="REG_DTTM" property="regDttm" />
+		<result column="VIEW_CNT" property="viewCnt" />
+		<result column="ANS_STATE_NM" property="ansStateNm" />
+		<result column="APPR_DTTM" property="apprDttm" />
+		<result column="SECRET_YN" property="secretYn" />
+		<result column="ORG_NM" property="orgNm" />
+		<result column="DEPT_NM" property="deptNm" />
+		<result column="POPUP_YN" property="popupYn" />
+	</resultMap>
+	
+	<resultMap id="BbsAdminInfo" class="egovframework.admin.bbs.service.BbsList">
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="LANG_CD" property="langCd" />
+		<result column="LIST_CD" property="listCd" />
+		<result column="BBS_TYPE_CD" property="bbsTypeCd" />
+		<result column="NOTICE_YN" property="noticeYn" />
+		<result column="SECRET_YN" property="secretYn" />
+		<result column="ATFILE_YN" property="atfileYn" />
+		<result column="EXT_LIMIT" property="extLimit" />
+		<result column="SIZE_LIMIT" property="sizeLimit" />
+		<result column="LINK_YN" property="linkYn" />
+		<result column="INF_YN" property="infYn" />
+		<result column="EMAIL_REG_YN" property="emailRegYn" />
+		<result column="EMAIL_NEED_YN" property="emailNeedYn" />
+		<result column="TEL_YN" property="telYn" />
+		<result column="TEL_NEED_YN" property="telNeedYn" />
+		<result column="ANS_YN" property="ansYn" />
+		<result column="ANS_TAG" property="ansTag" />
+		<result column="HTML_YN" property="htmlYn" />
+		<result column="DEPT_YN" property="deptYn" />
+	</resultMap>
+	
+	<resultMap id="topImg" class="egovframework.admin.bbs.service.BbsList">
+		<result column="SEQ" property="seq" />
+		<result column="FILE_SEQ" property="fileSeq" />
+	</resultMap>
+	
+	<resultMap id="BbsDtlList" class="egovframework.admin.bbs.service.BbsList">
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="SEQ" property="seq" />
+		<result column="P_SEQ" property="pSeq" />
+		<result column="LIST_SUB_CD" property="listSubCd" />
+		<result column="BBS_TIT" property="bbsTit" />
+		<result column="NOTICE_YN" property="noticeYn" />
+		<result column="USER_ID" property="userId" />
+		<result column="USER_NM" property="userNm" />
+		<result column="USER_DTTM" property="userDttm" />
+<!-- 		<result column="KEY_SEQ" property="keySeq" /> -->
+		<result column="USER_EMAIL" property="userEmail" />
+		<result column="USER_TEL" property="userTel" />
+		<result column="BBS_CONT" property="bbsCont"  jdbcType="CLOB" javaType="java.lang.String" typeHandler="clobHandler"/>
+		<result column="ORG_CD" property="orgCd" />
+		<result column="ORG_NM" property="orgNm" />
+		<result column="ANS_CONT" property="ansCont" />
+		<result column="ACPT_ID" property="acptId" />
+		<result column="ACPT_DTTM" property="acptDttm" />
+		<result column="APPR_NM" property="apprNm" />
+		<result column="APPR_ID" property="apprId" />
+		<result column="APPR_TEL" property="apprTel" />
+		<result column="UPD_ID" property="updId" />
+		<result column="UPD_DTTM" property="updDttm" />
+		<result column="REG_ID" property="regId" />
+		<result column="REG_DTTM" property="regDttm" />
+		<result column="ANS_STATE_NM" property="ansStateNm" />
+		<result column="APPR_DTTM" property="apprDttm" />
+		<result column="SECRET_YN" property="secretYn" />
+		<result column="DEL_YN" property="delYn" />
+		<result column="TEL1" property="tel1" />
+		<result column="TEL2" property="tel2" />
+		<result column="TEL3" property="tel3" />
+		<result column="EMAIL1" property="email1" />
+		<result column="EMAIL2" property="email2" />
+		
+		<result column="POPUP_YN" property="popupYn" />
+		<result column="WEIGHT_SIZE" property="weightSize" />
+		<result column="HEIGHT_SIZE" property="heightSize" />
+		<result column="POPUP_START_DATE" property="popupStartDate" />
+		<result column="POPUP_START_HH" property="popupStartHh" />
+		<result column="POPUP_START_MI" property="popupStartMi" />
+		<result column="POPUP_END_DATE" property="popupEndDate" />
+		<result column="POPUP_END_HH" property="popupEndHh" />
+		<result column="POPUP_ENDT_MI" property="popupEndMi" />
+	</resultMap>
+	
+	<resultMap id="BbsLinkListAll" class="egovframework.admin.bbs.service.BbsList">
+		<result column="SEQ" property="seq" />
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="DEL_YN" property="delYn" />
+		<result column="LINK_SEQ" property="linkSeq" />
+		<result column="URL" property="url" />
+		<result column="LINK_NM" property="linkNm" />
+	</resultMap>
+	
+	<resultMap id="BbsInfListAll" class="egovframework.admin.bbs.service.BbsList">
+		<result column="SEQ" property="seq" />
+		<result column="DEL_YN" property="delYn" />
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="INF_ID" property="infId" />
+		<result column="INF_NM" property="infNm" />
+	</resultMap>
+	
+	<resultMap id="BbsFileListAll" class="egovframework.admin.bbs.service.BbsList">
+		<result column="SEQ" property="mstSeq" />
+		<result column="DEL_YN" property="delYn" />
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="FILE_SEQ" property="fileSeq" />
+		<result column="FILE_SIZE" property="fileSize" />
+		<result column="VIEW_FILE_NM" property="viewFileNm" />
+		<result column="SRC_FILE_NM" property="srcFileNm" />
+		<result column="SAVE_FILE_NM" property="saveFileNm" />
+		<result column="FILE_EXT" property="fileExt" />
+		<result column="TOP_YN" property="topYn" />
+		<result column="REG_DTTM" property="regDttm" />
+		<result column="CATE_NM" property="cateNm" />
+	</resultMap>
+	
+	<resultMap id="BbsFileListAll2" class="egovframework.admin.bbs.service.BbsList">
+		<result column="SEQ" property="mstSeq" />
+		<result column="DEL_YN" property="delYn" />
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="FILE_SEQ" property="fileSeq" />
+		<result column="FILE_SIZE" property="fileSize" />
+		<result column="VIEW_FILE_NM" property="viewFileNm" />
+		<result column="SRC_FILE_NM" property="srcFileNm" />
+		<result column="SAVE_FILE_NM" property="saveFileNm" />
+		<result column="FILE_EXT" property="fileExt" />
+		<result column="TOP_YN" property="topYn" />
+		<result column="REG_DTTM" property="regDttm" />
+		<result column="CATE_NM" property="cateNm" />
+	</resultMap>
+	
+	<resultMap id="BbsInfPop" class="egovframework.admin.bbs.service.BbsList">
+		<result column="INF_ID" property="infId" />
+		<result column="INF_NM" property="infNm" />
+	</resultMap>
+
+	<select id="BbsListDAO.selectBbsList"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsListAll">
+		SELECT *
+		  FROM(
+			SELECT ROWNUM AS RN, TB.*
+			  FROM
+			  (
+					SELECT A.BBS_CD, A.SEQ, A.P_SEQ, A.LIST_SUB_CD, A.BBS_TIT, A.NOTICE_YN, TO_CHAR(A.REG_DTTM,'YYYY-MM-DD HH24:MI:SS') AS REG_DTTM
+					, A.USER_ID, A.USER_NM, A.VIEW_CNT, A.ORG_NM, A.DEPT_NM, A.POPUP_YN
+					<isNotEmpty property="ansTag" >
+						<isEqual property="ansTag" compareValue="A" >
+							, CASE A.ANS_STATE WHEN 'RW' THEN '접수대기'
+			 					 	WHEN 'AW' THEN '승인대기'
+			 					 	WHEN 'AK' THEN '승인완료'
+			 					 	WHEN 'AC' THEN '승인불가'
+				                 	ELSE A.ANS_STATE END AS ANS_STATE_NM
+				    	</isEqual>  
+				    	<isEqual property="ansTag" compareValue="R" >
+				    		, CASE A.ANS_STATE WHEN 'RW' THEN '접수대기'
+			 					 	WHEN 'AW' THEN '답변대기'
+			 					 	WHEN 'AK' THEN '답변완료'
+			 					 	WHEN 'AC' THEN '답변불가'
+				                 	ELSE A.ANS_STATE END AS ANS_STATE_NM
+				    	</isEqual>
+			   	        <isEqual property="ansTag" compareValue="N" > 
+			   	        	, ANS_STATE AS ANS_STATE_NM
+			   	        </isEqual>	
+					</isNotEmpty>	                 	
+							, A.APPR_DTTM, A.SECRET_YN
+					FROM TB_BBS_LIST A
+				   WHERE A.BBS_CD = #bbsCd#
+					 AND A.DEL_YN = 'N'
+				     <isNotEmpty property="searchWord" >
+				    	<isEqual property="searchWd" compareValue="0" >
+				    	AND A.BBS_TIT LIKE '%'||#searchWord#||'%'
+				    	</isEqual>
+				    	<isEqual property="searchWd" compareValue="1">
+				    	AND A.USER_NM LIKE '%'||#searchWord#||'%'
+				    	</isEqual>
+				    </isNotEmpty>
+				    <isNotEmpty property="ditcCode" >
+				    	AND A.LIST_SUB_CD = #ditcCode#
+				    </isNotEmpty>
+				    <isNotEmpty property="ansYn" >
+				        AND (#ansYn# = 'N' AND A.ANS_STATE IN ('RW','AW') )
+				    </isNotEmpty>
+				<isEmpty property="iOrderBy"> 
+					ORDER BY A.USER_DTTM DESC
+				</isEmpty>
+				<isNotEmpty property="iOrderBy">
+					ORDER  BY $iOrderBy$
+				</isNotEmpty>	
+			)TB
+		)
+		<isNotEqual prepend="startPage" compareValue="0">
+			WHERE RN BETWEEN #startPage# AND #endPage#
+		</isNotEqual>
+	</select>
+	
+	
+	<select id="BbsListDAO.selectBbsListCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(A.BBS_CD)
+		FROM TB_BBS_LIST A
+		WHERE A.BBS_CD = #bbsCd#
+		AND A.DEL_YN = 'N'
+	<isNotEmpty property="searchWord" >
+		<isEqual property="searchWd" compareValue="0" >
+		AND A.BBS_TIT LIKE '%'||#searchWord#||'%'
+		</isEqual>
+		<isEqual property="searchWd" compareValue="1">
+		AND A.USER_NM LIKE '%'||#searchWord#||'%'
+		</isEqual>
+	</isNotEmpty>
+	<isNotEmpty property="ditcCode" >
+		AND A.LIST_SUB_CD = #ditcCode#
+	</isNotEmpty>
+	</select>
+	
+	<select id="BbsListDAO.selectBbsDtlList"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsDtlList">
+		SELECT BBS_CD, SEQ, P_SEQ, BBS_TIT, LIST_SUB_CD, NOTICE_YN, USER_ID, USER_NM, USER_DTTM,
+					SECRET_YN, BBS_CONT, ORG_CD, ORG_NM 
+<!-- 					, USER_TEL, USER_EMAIL -->
+				,USER_EMAIL USER_EMAIL
+				,SUBSTR((USER_EMAIL), 1, INSTR((USER_EMAIL), '@')-1) EMAIL1
+				,SUBSTR((USER_EMAIL), INSTR((USER_EMAIL), '@')+1, LENGTH((USER_EMAIL))) EMAIL2
+		  		, USER_TEL USER_TEL
+		  	 	,SUBSTR((USER_TEL), 1, INSTR((USER_TEL), '-')-1) TEL1
+				,SUBSTR(SUBSTR((USER_TEL), INSTR((USER_TEL), '-')+1, LENGTH((USER_TEL))), 1, INSTR(SUBSTR((USER_TEL), INSTR((USER_TEL), '-')+1, LENGTH((USER_TEL))), '-')-1) TEL2
+				,SUBSTR(SUBSTR((USER_TEL), INSTR((USER_TEL), '-')+1, LENGTH((USER_TEL))), INSTR(SUBSTR((USER_TEL), INSTR((USER_TEL), '-')+1, LENGTH((USER_TEL))), '-')+1, 
+				LENGTH(SUBSTR((USER_TEL), INSTR((USER_TEL), '-')+1, LENGTH((USER_TEL))))) TEL3 
+ 
+<!-- 					,FN_SCP_EDC_STR('D', USER_EMAIL) USER_EMAIL, FN_SCP_EDC_STR('D', USER_TEL) USER_TEL -->
+			<isNotEmpty property="ansTag" >
+				<isEqual property="ansTag" compareValue="A" >
+					, CASE ANS_STATE WHEN 'RW' THEN '접수대기'
+	 					 	WHEN 'AW' THEN '승인대기'
+	 					 	WHEN 'AK' THEN '승인완료'
+	 					 	WHEN 'AC' THEN '승인불가'
+		                 	ELSE ANS_STATE END AS ANS_STATE_NM
+		    	</isEqual>  
+		    	<isEqual property="ansTag" compareValue="R" >
+		    		, CASE ANS_STATE WHEN 'RW' THEN '접수대기'
+	 					 	WHEN 'AW' THEN '답변대기'
+	 					 	WHEN 'AK' THEN '답변완료'
+	 					 	WHEN 'AC' THEN '답변불가'
+		                 	ELSE ANS_STATE END AS ANS_STATE_NM
+		    	</isEqual>
+		    	<isEqual property="ansTag" compareValue="N" > 
+	   	        	, ANS_STATE AS ANS_STATE_NM
+	   	        </isEqual>	           	
+			</isNotEmpty>	                 	
+					, ANS_CONT, ACPT_ID, ACPT_DTTM,
+					APPR_NM, APPR_ID, APPR_TEL, APPR_DTTM, REG_ID, REG_DTTM, UPD_ID, UPD_DTTM, DEL_YN
+					,POPUP_YN 
+					,WEIGHT_SIZE 
+					,HEIGHT_SIZE
+					,POPUP_START_DATE 
+					,SUBSTR(POPUP_START_HHMI,1,2) AS POPUP_START_HH
+					,SUBSTR(POPUP_START_HHMI,3,4) AS POPUP_START_MI
+					,POPUP_END_DATE 
+					,SUBSTR(POPUP_END_HHMI,1,2) AS POPUP_END_HH
+					,SUBSTR(POPUP_END_HHMI,3,4) AS POPUP_ENDT_MI
+		FROM TB_BBS_LIST
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</select>
+
+	<select id="BbsListDAO.selectBbsAdminInfo" parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsAdminInfo">
+		SELECT BBS_CD, LIST_CD, LANG_CD, BBS_TYPE_CD, NOTICE_YN, SECRET_YN, ATFILE_YN, EXT_LIMIT, SIZE_LIMIT
+				, LINK_YN, INF_YN, EMAIL_REG_YN, EMAIL_NEED_YN, TEL_YN, TEL_NEED_YN, ANS_YN, ANS_TAG, HTML_YN, DEPT_YN
+		FROM TB_BBS_ADMIN
+		WHERE BBS_CD = #bbsCd#
+		AND USE_YN = 'Y'
+	</select>
+	
+	<select id="BbsListDAO.selectBbsTypeCd" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="String" >
+		SELECT  BBS_TYPE_CD
+		FROM TB_BBS_ADMIN
+		WHERE BBS_CD = #bbsCd#
+		AND USE_YN = 'Y'
+	</select>
+	
+	<select id="BbsListDAO.selectBbsDitcCd" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="String" >
+		SELECT  LIST_CD
+		FROM TB_BBS_ADMIN
+		WHERE BBS_CD = #bbsCd#
+		AND USE_YN = 'Y'
+	</select>
+	
+	<select id="BbsListDAO.selectDelYn" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="String" >
+		SELECT DEL_YN
+		FROM TB_BBS_LIST
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</select>
+	
+	<select id="BbsListDAO.selectBbsLinkList"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsLinkListAll">
+		SELECT SEQ, BBS_CD, LINK_SEQ, LINK_NM, URL, DEL_YN
+		FROM TB_BBS_LINK
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</select>
+	
+	<select id="BbsListDAO.selectBbsLinkListCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(LINK_SEQ)
+		FROM TB_BBS_LINK
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</select>
+	
+	<select id="BbsListDAO.selectBbsInfList"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsInfListAll">
+		SELECT A.BBS_CD, A.SEQ, A.INF_ID, B.INF_NM, A.DEL_YN
+		FROM TB_BBS_INF A
+		INNER JOIN TB_OPEN_INF B
+		ON A.INF_ID = B.INF_ID
+		WHERE A.BBS_CD = #bbsCd#
+		AND A.SEQ = #seq#
+	</select>
+	
+	<select id="BbsListDAO.selectBbsInfListCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(A.INF_ID)
+		FROM TB_BBS_INF A
+		INNER JOIN TB_OPEN_INF B
+		ON A.INF_ID = B.INF_ID
+		WHERE A.BBS_CD = #bbsCd#
+		AND A.SEQ = #seq#
+	</select>
+	
+	<select id="BbsListDAO.selectBbsFileList"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsFileListAll">
+		SELECT BBS_CD
+			, SEQ
+			, FILE_SEQ
+			, FILE_SIZE
+			, VIEW_FILE_NM
+			, SRC_FILE_NM
+			, SAVE_FILE_NM
+			, FILE_EXT
+			, TOP_YN
+			, DEL_YN
+			, REG_DTTM
+			, CATE_NM
+		FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND DEL_YN = 'N'
+		<isEqual property="bbsCd" compareValue="FSL1004">
+		AND TOP_YN = 'N'
+		</isEqual>
+		<isEqual property="bbsCd" compareValue="FSL1004">
+		ORDER BY MIN(FILE_SEQ) OVER (PARTITION BY CATE_NM), FILE_SEQ
+		</isEqual>
+		<isNotEqual property="bbsCd" compareValue="FSL1004">
+		ORDER BY TOP_YN DESC, FILE_SEQ
+		</isNotEqual>
+	</select>
+	
+	<select id="BbsListDAO.selectBbsFileListCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(FILE_SEQ)
+		FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		<isEqual property="bbsCd" compareValue="FSL1004">
+		AND TOP_YN = 'N'
+		</isEqual>
+	</select>
+	
+	<select id="BbsListDAO.selectBbsInfPopList"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsInfPop">
+		SELECT INF_ID, INF_NM
+		FROM TB_OPEN_INF
+		WHERE PRSS_STATE IN ('AA', 'AK')
+		<isNotEmpty property="infNm">
+		AND INF_NM = #infNm#
+		</isNotEmpty>
+	</select>
+	
+	<select id="BbsListDAO.selectBbsInfPopListCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(INF_ID)
+		FROM TB_OPEN_INF
+		WHERE PRSS_STATE IN ('AA', 'AK')
+		<isNotEmpty property="infNm">
+		AND INF_NM = #infNm#
+		</isNotEmpty>
+	</select>
+	
+	<select id="BbsListDAO.bbsImgDetailView"	 parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="BbsFileListAll2">
+		SELECT BBS_CD
+			, SEQ
+			, FILE_SEQ
+			, FILE_SIZE
+			, VIEW_FILE_NM
+			, SRC_FILE_NM
+			, SAVE_FILE_NM
+			, FILE_EXT
+			, TOP_YN
+			, DEL_YN
+			, REG_DTTM
+			, CATE_NM
+		FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND DEL_YN = 'N'
+		ORDER BY TOP_YN DESC
+	</select>
+	
+	<select id="BbsListDAO.getSeq" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT NVL(MAX(SEQ),0)+1
+		FROM TB_BBS_LIST
+	</select>
+	
+	<insert id="BbsListDAO.insertBbsList" parameterClass="egovframework.admin.bbs.service.BbsList">
+		INSERT INTO TB_BBS_LIST
+			(BBS_CD, SEQ, P_SEQ, BBS_TIT, OLD_TIT, LIST_SUB_CD, NOTICE_YN, USER_ID, USER_NM, USER_DTTM, KEY_SEQ, SECRET_YN
+			<isNotEmpty property="email1">
+				<isNotEmpty property="email2">
+			, USER_EMAIL
+				</isNotEmpty>
+			</isNotEmpty>
+			<isNotEmpty property="tel1">
+				<isNotEmpty property="tel2">
+					<isNotEmpty property="tel3">
+			, USER_TEL
+					</isNotEmpty>
+				</isNotEmpty>	
+			</isNotEmpty>
+			, BBS_CONT, REG_ID, REG_DTTM, UPD_ID, UPD_DTTM, USER_CD, DEPT_CD, DEPT_NM
+			, POPUP_YN
+			,WEIGHT_SIZE
+			,HEIGHT_SIZE
+			,POPUP_START_DATE
+			,POPUP_START_HHMI
+			,POPUP_END_DATE
+			,POPUP_END_HHMI
+			)
+			VALUES
+			(#bbsCd#, #seq#, #pSeq#, #bbsTit#, #bbsTit#, #listSubCd#, 
+			<isEmpty property="noticeYn">
+					 'N',		
+			 </isEmpty>
+			 <isNotEmpty property="noticeYn">
+				#noticeYn#, 
+			 </isNotEmpty>
+			#sessionUsrId#, #userNm#, SYSDATE, #keySeq#, 
+			<isEmpty property="secretYn">
+					 'N'	
+			 </isEmpty>
+			 <isNotEmpty property="secretYn">
+				#secretYn#
+			 </isNotEmpty>
+			 <isNotEmpty property="email1">
+				<isNotEmpty property="email2">
+			 , FN_SCP_EDC_STR('E', #email1# || '@' || #email2#)
+				</isNotEmpty>
+			 </isNotEmpty>
+			 <isNotEmpty property="tel1">
+				<isNotEmpty property="tel2">
+					<isNotEmpty property="tel3">
+			, FN_SCP_EDC_STR('E', #tel1# || '-' || #tel2# || '-' || #tel3#)
+					</isNotEmpty>
+				</isNotEmpty>
+			 </isNotEmpty>
+			, #bbsCont:CLOB#, #sessionUsrId#, SYSDATE, #sessionUsrId#, SYSDATE
+			, #sessionUsrCd#, #sessionOrgCd#, #sessionOrgNm#
+			<isNotEqual property="popupYn" compareValue="Y" >
+				, 'N'
+			</isNotEqual>
+			<isEqual property="popupYn" compareValue="Y" >
+				,'Y'
+			</isEqual>
+			, #weightSize#
+			, #heightSize#
+			, #popupStartDate#
+			, #popupStartHh# || #popupStartMi#
+			, #popupEndDate#
+			, #popupEndHh# || #popupEndMi#
+			
+			)
+	</insert>
+	
+	<update id="BbsListDAO.updateBbsList" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LIST
+		SET LIST_SUB_CD = #listSubCd#
+			<isNotEmpty property="delYn">
+			, BBS_TIT = '관리자에 의해 삭제 되었습니다.'
+			, DEL_YN = #delYn#
+			, OLD_TIT = #bbsTit#
+			</isNotEmpty>
+			<isEmpty property="delYn">
+			, BBS_TIT = #bbsTit#
+			, OLD_TIT = #bbsTit#
+			, DEL_YN = 'N'
+			</isEmpty>
+			<isEmpty property="noticeYn">
+			, NOTICE_YN = 'N'
+			</isEmpty>
+			<isNotEmpty property="noticeYn">
+			, NOTICE_YN = #noticeYn#
+			</isNotEmpty>
+			, KEY_SEQ = #keySeq#
+			<isNotEmpty property="email1">
+				<isNotEmpty property="email2">
+			, USER_EMAIL = FN_SCP_EDC_STR('E', #email1# || '@' || #email2#)
+				</isNotEmpty>
+			</isNotEmpty>
+			<isNotEmpty property="tel1">
+				<isNotEmpty property="tel2">
+					<isNotEmpty property="tel3">
+			, USER_TEL = FN_SCP_EDC_STR('E', #tel1# || '-' || #tel2# || '-' || #tel3#)
+					</isNotEmpty>
+				</isNotEmpty>
+			</isNotEmpty>
+			<isEmpty property="secretYn">
+			, SECRET_YN = 'N'	
+			 </isEmpty>
+			 <isNotEmpty property="secretYn">
+			, SECRET_YN = #secretYn#
+			 </isNotEmpty>
+			, BBS_CONT = #bbsCont:CLOB#
+			, USER_NM = #userNm#
+			, UPD_ID = #sessionUsrId#
+			, UPD_DTTM = SYSDATE
+			<isNotEqual property="popupYn" compareValue="Y" >
+				,POPUP_YN= 'N'
+			</isNotEqual>
+			<isEqual property="popupYn" compareValue="Y" >
+				,POPUP_YN= 'Y'
+			</isEqual>
+			,WEIGHT_SIZE =#weightSize#
+			,HEIGHT_SIZE = #heightSize#
+			,POPUP_START_DATE = #popupStartDate#
+			,POPUP_START_HHMI =#popupStartHh# || #popupStartMi#
+			,POPUP_END_DATE =  #popupEndDate#
+			,POPUP_END_HHMI = #popupEndHh# || #popupEndMi#
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#	
+	</update>
+	
+	<update id="BbsListDAO.deleteBbsList" parameterClass="egovframework.admin.bbs.service.BbsList">
+<!-- 		DELETE FROM TB_BBS_LIST -->
+<!-- 		WHERE BBS_CD = #bbsCd# -->
+<!-- 		AND SEQ = #seq# -->
+			UPDATE TB_BBS_LIST
+			SET DEL_YN = 'Y'
+			WHERE BBS_CD = #bbsCd#
+			AND SEQ = #seq# 
+			
+	</update>
+	
+	<insert id="BbsListDAO.updateTopYn" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_FILE
+		SET TOP_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ = #topYnSeq#
+	</insert>
+	<insert id="BbsListDAO.updateTopYn2" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_FILE
+		SET TOP_YN = 'N'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ NOT IN(#topYnSeq#)
+	</insert>
+	<select id="BbsListDAO.getTopYnCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(SEQ)
+		FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ NOT IN(#topYnSeq#)
+	</select>
+	
+	
+	<select id="BbsListDAO.getLinkSeq" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT NVL(MAX(LINK_SEQ),0)+1  
+		FROM TB_BBS_LINK
+	</select>
+	
+	<select id="BbsListDAO.getFileSeq" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT NVL(MAX(FILE_SEQ),0)+1  
+		FROM TB_BBS_FILE
+	</select>
+	
+	<select id="BbsListDAO.getTopImg"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="topImg">
+		SELECT SEQ, FILE_SEQ
+		FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND TOP_YN ='Y'
+	</select>
+	
+	<insert id="BbsListDAO.insertBbsLink" parameterClass="egovframework.admin.bbs.service.BbsList">
+		INSERT INTO TB_BBS_LINK
+			VALUES
+			(#bbsCd#, #seq#, #linkSeq#, #linkNm#, #url#, 'N', SYSDATE, #sessionUsrId#, SYSDATE)
+	</insert>
+	
+	<update id="BbsListDAO.deleteImg" parameterClass="egovframework.admin.bbs.service.BbsList">
+		<!--DELETE TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ = #delYnVal#-->
+		
+	    UPDATE TB_BBS_FILE
+		SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ = #fileSeq# 
+	</update>
+	
+	<update id="BbsListDAO.updateBbsLink" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LINK
+			SET LINK_NM = #linkNm#
+				, URL = #url#
+				, UPD_ID = #sessionUsrId#
+				, UPD_DTTM = SYSDATE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND LINK_SEQ = #linkSeq#
+	</update>
+	
+	<update id="BbsListDAO.deleteUpdateBbsLink" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LINK
+		SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND LINK_SEQ = #linkSeq#
+	</update>
+	
+	<update id="BbsListDAO.deleteBbsLink" parameterClass="egovframework.admin.bbs.service.BbsList">
+		DELETE FROM TB_BBS_LINK
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND LINK_SEQ = #linkSeq#
+	</update>
+	
+	<insert id="BbsListDAO.insertBbsFile" parameterClass="egovframework.admin.bbs.service.BbsList">
+		INSERT INTO TB_BBS_FILE
+			(	BBS_CD, SEQ, FILE_SEQ	, FILE_SIZE, SRC_FILE_NM, SAVE_FILE_NM, VIEW_FILE_NM, FILE_EXT, TOP_YN, DEL_YN, REG_DTTM, UPD_ID, UPD_DTTM, CATE_NM )
+		 VALUES 
+		 ( #bbsCd#, #mstSeq#, #fileSeq#, #fileSize#, #srcFileNm#, #saveFileNm#, #viewFileNm#, #fileExt#
+		 	<isEmpty property="topYn">
+			, 'N'
+			</isEmpty>
+			<isNotEmpty property="topYn">
+			 , #topYn#
+			</isNotEmpty>
+		 , 'N', SYSDATE, #sessionUsrId#, SYSDATE, #cateNm#			)
+	</insert>
+	
+	<update id="BbsListDAO.updateBbsFile" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_FILE
+		SET VIEW_FILE_NM = #viewFileNm#
+			, CATE_NM = #cateNm#
+			<isEqual property="bbsCd" compareValue="ANALYSIS">
+				, TOP_YN = #topYn#
+			</isEqual>
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ = #fileSeq#
+	</update>
+	
+	<update id="BbsListDAO.deleteUpdateBbsFile" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_FILE
+		SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ = #fileSeq#
+	</update>
+	
+	<update id="BbsListDAO.deleteCPBbsFile" parameterClass="egovframework.admin.bbs.service.BbsList">
+	<!-- 	DELETE FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		 -->
+      UPDATE TB_BBS_FILE
+		SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+	</update>
+	
+	<update id="BbsListDAO.deleteBbsFile" parameterClass="egovframework.admin.bbs.service.BbsList">
+<!-- 		DELETE FROM TB_BBS_FILE -->
+<!-- 		WHERE BBS_CD = #bbsCd# -->
+<!-- 		AND SEQ = #mstSeq# -->
+<!-- 		AND FILE_SEQ = #fileSeq# -->
+		
+		UPDATE TB_BBS_FILE
+		SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+		AND FILE_SEQ = #fileSeq#
+		
+	</update>
+	
+	<insert id="BbsListDAO.insertBbsInf" parameterClass="egovframework.admin.bbs.service.BbsList">
+		INSERT INTO TB_BBS_INF
+			VALUES
+		(#bbsCd#, #seq#, #infId#, 'N', SYSDATE, #sessionUsrId#, SYSDATE)
+	</insert>
+	
+	<update id="BbsListDAO.updateBbsInf" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_INF
+			SET UPD_ID = #sessionUsrId#
+				, UPD_DTTM = SYSDATE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND INF_ID = #infId#
+	</update>
+	
+	<update id="BbsListDAO.updateDeleteBbsInf" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_INF
+			SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND INF_ID = #infId#
+	</update>
+	
+	<update id="BbsListDAO.deleteBbsInf" parameterClass="egovframework.admin.bbs.service.BbsList">
+		DELETE FROM TB_BBS_INF
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND INF_ID = #infId#
+	</update>
+	
+	<update id="BbsListDAO.deleteCPBbsLink" parameterClass="egovframework.admin.bbs.service.BbsList">
+		DELETE FROM TB_BBS_LINK
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</update>
+	
+	<update id = "BbsListDAO.deleteCPBbsInf" parameterClass="egovframework.admin.bbs.service.BbsList">
+		DELETE FROM TB_BBS_INF
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</update>
+	
+	<update id = "BbsListDAO.updateAnsState" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LIST
+			SET ANS_STATE = #ansState#
+				, APPR_DTTM = SYSDATE
+				, APPR_ID = #sessionUsrId#
+				, APPR_NM = #apprNm#
+				, APPR_TEL = #apprTel#
+				, ANS_CONT = #ansCont#
+				, ORG_CD = #orgCd#
+				, ORG_NM = #orgNm#
+		WHERE BBS_CD = #bbsCd#	
+		AND SEQ = #seq#
+	</update>
+	
+	<select id="BbsListDAO.getLinkCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(LINK_SEQ) 
+		FROM TB_BBS_LINK
+		WHERE DEL_YN = 'N'
+		AND BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</select>
+	
+	<select id="BbsListDAO.getInfCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(INF_ID) 
+		FROM TB_BBS_INF
+		WHERE DEL_YN = 'N'
+		AND BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</select>
+	
+	<select id="BbsListDAO.getFileCnt" parameterClass="egovframework.admin.bbs.service.BbsList" resultClass="java.lang.Integer">
+		SELECT COUNT(FILE_SEQ) 
+		FROM TB_BBS_FILE
+		WHERE DEL_YN = 'N'
+		AND BBS_CD = #bbsCd#
+		AND SEQ = #mstSeq#
+	</select>
+	
+	<update id = "BbsListDAO.updateLinkCnt" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LIST
+		SET LINK_CNT = #linkCnt#
+		WHERE BBS_CD = #bbsCd#	
+		AND SEQ = #seq#
+	</update>
+	
+	<update id = "BbsListDAO.updateDeleteImg" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_FILE
+		SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND FILE_SEQ = #fileSeq#
+	</update>
+	
+	<update id = "BbsListDAO.deleteImgDtl" parameterClass="egovframework.admin.bbs.service.BbsList">
+		<!-- DELETE FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND FILE_SEQ = #fileSeq#
+		 -->
+	  UPDATE TB_BBS_FILE
+		SET DEL_YN = 'Y'
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND FILE_SEQ = #fileSeq#
+	</update>
+	
+	<update id = "BbsListDAO.updateInfCnt" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LIST
+		SET INF_CNT = #infCnt#
+		WHERE BBS_CD = #bbsCd#	
+		AND SEQ = #seq#
+	</update>
+	
+	<update id = "BbsListDAO.updateFileCnt" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LIST
+		SET FILE_CNT = #fileCnt#
+		WHERE BBS_CD = #bbsCd#	
+		AND SEQ = #mstSeq#
+	</update>
+	
+	<update id = "BbsListDAO.mergeIntoFile" parameterClass="egovframework.admin.bbs.service.BbsList">
+<!-- 	<![CDATA[ -->
+		MERGE INTO TB_BBS_FILE A
+		USING(
+			SELECT #bbsCd# AS BBS_CD
+				, #mstSeq# AS SEQ
+				, #fileSeq# AS FILE_SEQ
+				, #fileSize# AS FILE_SIZE
+				, #srcFileNm# AS SRC_FILE_NM
+				, #saveFileNm# AS SAVE_FILE_NM
+				, #viewFileNm# AS VIEW_FILE_NM
+				, #fileExt# AS FILE_EXT
+		 	<isEmpty property="topYn">
+				, 'N'	AS TOP_YN
+			</isEmpty>
+			<isNotEmpty property="topYn">
+				 , #topYn#	AS_TOP_YN
+			</isNotEmpty>
+<!-- 				, #topYn# AS TOP_YN -->
+<!-- 				, #delYn# AS DEL_YN -->
+				, 'N' AS DEL_YN
+				, SYSDATE AS REG_DTTM
+				, #sessionUsrId# AS UPD_ID
+				, SYSDATE AS UPD_DTTM
+				, #cateNm# AS CATE_NM
+			FROM DUAL
+			) B
+			ON (A.BBS_CD = B.BBS_CD AND A.SEQ = B.SEQ AND A.FILE_SEQ = B.FILE_SEQ)	
+			WHEN MATCHED THEN
+			UPDATE SET
+				A.FILE_SIZE = B.FILE_SIZE
+				,A.SRC_FILE_NM = B.SRC_FILE_NM
+				,A.SAVE_FILE_NM = B.SAVE_FILE_NM
+				,A.VIEW_FILE_NM = B.VIEW_FILE_NM
+				,A.FILE_EXT = B.FILE_EXT
+				,A.UPD_ID = B.UPD_ID
+				,A.UPD_DTTM = B.UPD_DTTM
+				,A.CATE_NM = B.CATE_NM
+			WHEN NOT MATCHED THEN
+			INSERT
+			(	A.BBS_CD
+				,A.SEQ
+				,A.FILE_SEQ
+				,A.FILE_SIZE
+				,A.SRC_FILE_NM
+				,A.SAVE_FILE_NM
+				,A.VIEW_FILE_NM
+				,A.FILE_EXT
+				,A.TOP_YN
+				,A.DEL_YN
+				,A.REG_DTTM
+				,A.UPD_ID
+				,A.UPD_DTTM
+				,A.CATE_NM
+			) VALUES (
+				B.BBS_CD
+				,B.SEQ
+				,B.FILE_SEQ
+				,B.FILE_SIZE
+				,B.SRC_FILE_NM
+				,B.SAVE_FILE_NM
+				,B.VIEW_FILE_NM
+				,B.FILE_EXT
+				,B.TOP_YN
+				,B.DEL_YN
+				,B.REG_DTTM
+				,B.UPD_ID
+				,B.UPD_DTTM
+				,B.CATE_NM
+			)
+<!-- 		]]> -->
+	</update>
+	
+		<!-- 파일 업로드시 전체 Directory 명 설정할때 bbsCd를 추가하기위해 seq를 가지고 bbsCd를 가지고 오는 Query임 -->
+	<select id="BbsListDAO.getBbsCd" parameterClass="java.lang.Integer" resultClass="java.lang.String">
+		SELECT 
+		BBS_CD
+		FROM 
+		TB_BBS_LIST 
+		WHERE SEQ = #seq#
+		
+	</select>
+	
+	
+	
+	<resultMap id="RelSiteAll" class="egovframework.admin.bbs.service.BbsList">
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="SEQ" property="seq" />
+		<result column="BBS_TIT" property="bbsTit" />
+		<result column="LIST_SUB_CD" property="listSubCd" />
+		<result column="BBS_CONT" property="bbsCont" />
+		<result column="DEPT_CD" property="deptCd" />
+		<result column="DEPT_NM" property="deptNm" />
+		<result column="USER_NM" property="userNm" />
+		<result column="USER_DTTM" property="userDttm" />
+		<result column="ORG_CD" property="orgCd" />
+		<result column="ORG_NM" property="orgNm" />
+		
+		<result column="FILE_SEQ" property="fileSeq" />
+		<result column="SRC_FILE_NM" property="srcFileNm" />
+		<result column="VIEW_FILE_NM" property="viewFileNm" />
+		<result column="FILE_EXT" property="fileExt" />
+	</resultMap>
+	
+	<select id="BbsListDAO.selectRelSiteList" parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="RelSiteAll">
+		SELECT A.BBS_CD, A.SEQ, A.BBS_TIT, A.LIST_SUB_CD, A.BBS_CONT, A.DEPT_CD, A.DEPT_NM, 
+				A.USER_NM, A.USER_DTTM, A.ORG_CD, A.ORG_NM,
+				B.FILE_SEQ, B.SRC_FILE_NM, B.VIEW_FILE_NM, B.FILE_EXT
+		FROM TB_BBS_LIST A 
+		LEFT OUTER JOIN TB_BBS_FILE B ON A.SEQ = B.SEQ AND A.BBS_CD = B.BBS_CD
+		WHERE A.BBS_CD = #bbsCd#
+		<isNotEmpty property="listSubCd">
+		AND A.LIST_SUB_CD = #listSubCd#
+		</isNotEmpty>
+		<isNotEmpty property="searchWord">
+		AND A.BBS_TIT LIKE '%'||#searchWord#||'%'
+		</isNotEmpty>
+	</select>
+	
+	<select id="BbsListDAO.selectRelSiteDtlList"	parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="RelSiteAll">
+		SELECT A.BBS_CD, A.SEQ, A.BBS_TIT, A.LIST_SUB_CD, A.BBS_CONT, A.DEPT_CD, A.DEPT_NM,
+			A.USER_NM, A.USER_DTTM, A.ORG_CD, A.ORG_NM,
+			B.FILE_SEQ, B.SRC_FILE_NM, B.VIEW_FILE_NM, B.FILE_EXT
+		FROM TB_BBS_LIST A 
+		LEFT OUTER JOIN TB_BBS_FILE B ON A.SEQ = B.SEQ AND A.BBS_CD = B.BBS_CD
+		WHERE A.BBS_CD = #bbsCd#
+		AND A.SEQ = #seq#
+	</select>
+	
+	<insert id="BbsListDAO.insertRelSite" parameterClass="egovframework.admin.bbs.service.BbsList">
+		INSERT INTO TB_BBS_LIST
+			(BBS_CD, SEQ, P_SEQ, BBS_TIT, BBS_CONT, OLD_TIT, LIST_SUB_CD, USER_ID, USER_NM, USER_DTTM, 
+			DEPT_CD, DEPT_NM, ORG_CD, ORG_NM, REG_ID, REG_DTTM, UPD_ID, UPD_DTTM)
+		VALUES
+			(#bbsCd#, #seq#, #pSeq#, #bbsTit#, #bbsCont:CLOB#, #bbsTit#, #listSubCd#, #sessionUsrId#, #userNm#, SYSDATE, 
+			#deptCd#, #deptNm#, #orgCd#, #orgNm#, #sessionUsrId#, SYSDATE, #sessionUsrId#, SYSDATE)
+	</insert>
+	
+	<update id="BbsListDAO.updateRelSite" parameterClass="egovframework.admin.bbs.service.BbsList">
+		UPDATE TB_BBS_LIST
+		SET BBS_TIT = #bbsTit#,
+			BBS_CONT = #bbsCont:CLOB#,
+			LIST_SUB_CD = #listSubCd#,
+			DEPT_NM = #deptNm#,
+			ORG_NM = #orgNm#,
+			UPD_ID = #sessionUsrId#, UPD_DTTM = SYSDATE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</update>
+	
+	<delete id="BbsListDAO.deleteRelSite" parameterClass="egovframework.admin.bbs.service.BbsList">
+		DELETE FROM TB_BBS_LIST
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+	</delete>
+	
+	<delete id="BbsListDAO.deleteRelSiteImgFile" parameterClass="egovframework.admin.bbs.service.BbsList">
+		DELETE FROM TB_BBS_FILE
+		WHERE BBS_CD = #bbsCd#
+		AND SEQ = #seq#
+		AND FILE_SEQ = #fileSeq#
+	</delete>
+	
+	
+	<resultMap id="AdmBbsAll" class="egovframework.admin.bbs.service.BbsList">
+		<result column="BBS_CD" property="bbsCd" />
+		<result column="SEQ" property="seq" />
+		<result column="BBS_TIT" property="bbsTit" />
+		<result column="LIST_SUB_CD" property="listSubCd" />
+		<result column="NOTICE_YN" property="noticeYn" />
+		<result column="BBS_CONT" property="bbsCont" />
+		<result column="DEPT_CD" property="deptCd" />
+		<result column="DEPT_NM" property="deptNm" />
+		<result column="USER_ID" property="userId" />
+		<result column="USER_NM" property="userNm" />
+		<result column="USER_DTTM" property="userDttm" />
+		<result column="SECRET_YN" property="secretYn" />
+		<result column="ORG_CD" property="orgCd" />
+		<result column="ORG_NM" property="orgNm" />
+		
+		<result column="ANS_STATE" property="ansState" />
+		<result column="ANS_STATE_NM" property="ansStateNm" />
+		<result column="ANS_CONT" property="ansCont" />
+		<result column="ACPT_ID" property="acptId" />
+		<result column="ACPT_DTTM" property="acptDttm" />
+		<result column="APPR_ID" property="apprId" />
+		<result column="APPR_NM" property="apprNm" />
+		<result column="APPR_TEL" property="apprTel" />
+		<result column="APPR_DTTM" property="apprDttm" />
+		
+		<result column="FILE_SEQ" property="fileSeq" />
+		<result column="SRC_FILE_NM" property="srcFileNm" />
+		<result column="VIEW_FILE_NM" property="viewFileNm" />
+		<result column="FILE_EXT" property="fileExt" />
+	</resultMap>
+	
+	<select id="BbsListDAO.selectAdmBbsDtlList" parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="AdmBbsAll">
+		SELECT A.BBS_CD, A.SEQ, A.BBS_TIT, A.LIST_SUB_CD, A.NOTICE_YN, A.BBS_CONT, A.USER_ID, A.USER_NM, A.USER_DTTM, A.SECRET_YN,
+			A.DEPT_CD, A.DEPT_NM, A.ORG_CD, A.ORG_NM,
+			A.ANS_STATE,
+			CASE A.ANS_STATE 
+			WHEN 'RW' THEN '접수대기'
+			WHEN 'AW' THEN '답변대기'
+			WHEN 'AK' THEN '답변완료'
+			WHEN 'AC' THEN '답변불가'
+			ELSE A.ANS_STATE END AS ANS_STATE_NM,
+			A.ANS_CONT, A.ACPT_ID, A.ACPT_DTTM, A.APPR_ID, A.APPR_NM, A.APPR_TEL, A.APPR_DTTM,
+			B.FILE_SEQ, B.SRC_FILE_NM, B.VIEW_FILE_NM, B.FILE_EXT
+		FROM TB_BBS_LIST A 
+		LEFT OUTER JOIN TB_BBS_FILE B ON A.SEQ = B.SEQ AND A.BBS_CD = B.BBS_CD
+		WHERE A.BBS_CD = #bbsCd#
+		AND A.SEQ = #seq#
+	</select>
+	
+	<update id="BbsListDAO.updateViewCnt" parameterClass="egovframework.admin.bbs.service.BbsList">
+  		UPDATE TB_BBS_LIST A
+			SET A.VIEW_CNT = (SELECT NVL(MAX(VIEW_CNT),0)+1 FROM TB_BBS_LIST B WHERE A.BBS_CD = B.BBS_CD AND A.SEQ = B.SEQ)	
+		WHERE A.SEQ = #seq#
+  	</update>
+  	
+  	
+    <resultMap id="OpdNeedBbsList" class="egovframework.admin.bbs.service.BbsList">
+       
+        <result column="SEQ"          property="seq"     /> 
+        <result column="BBS_TIT"      property="bbsTit"     />                
+        <result column="USER_NM"      property="userNm"     />
+        <result column="USER_ID"      property="userId"     />                          
+        <result column="USER_DTTM"    property="userDttm"   />
+        <result column="ANS_STATE_NM" property="ansStateNm" />
+        <result column="NOTICE_YN"    property="noticeYn"   />
+        <result column="REG_DTTM"     property="regDttm"   />
+        <result column="SECRET_YN"     property="secretYn"   />         
+    </resultMap>
+  	
+  	<select id="BbsListDAO.selectMainBbsList" parameterClass="egovframework.admin.bbs.service.BbsList" resultMap="OpdNeedBbsList">
+  	     SELECT A.BBS_TIT   
+              , A.USER_NM
+              , A.USER_ID  
+              , A.USER_DTTM  
+              , CASE WHEN A.ANS_STATE = 'RW' THEN '접수대기'
+                     WHEN A.ANS_STATE = 'AW' THEN '답변대기'
+                     WHEN A.ANS_STATE = 'AK' THEN '답변완료'
+                     WHEN A.ANS_STATE = 'AC' THEN '답변불가'
+                  ELSE A.ANS_STATE 
+                END AS ANS_STATE_NM  
+              , A.NOTICE_YN           
+              , A.REG_DTTM    
+              , A.SEQ
+              , A.SECRET_YN
+           FROM TB_BBS_LIST  A          
+          WHERE A.BBS_CD     = #bbsCd#            
+            AND A.DEL_YN     = 'N'
+            <isNotEmpty property="ansYn">
+                AND (#ansYn# = 'N' AND A.ANS_STATE IN ('RW','AW'))
+            </isNotEmpty>
+          ORDER BY A.USER_DTTM DESC  
+  	</select>
+  	
+  	<resultMap id="ImprvReqMng" class="egovframework.admin.bbs.service.ImprvReq">
+	<result property="seq" column="seq" />
+	<result property="reqTit" column="req_tit" />
+	<result property="reqCd" column="req_cd" />
+	<result property="reqCont" column="req_cont" />
+	<result property="orgNm" column="org_nm" />
+	<result property="usrCd" column="usr_cd" />
+	<result property="usrId" column="usr_id" />
+	<result property="usrNm" column="usr_nm" />
+	<result property="prssState" column="prss_state" />
+	<result property="prssExp" column="prss_exp" />
+	<result property="delYn" column="del_yn" />
+	<result property="regId" column="reg_id" />
+	<result property="regDttm" column="reg_dttm" />
+	<result property="updId" column="upd_id" />
+	<result property="updDttm" column="upd_dttm" />
+	<result property="reception" column="reception" />
+	<result property="srId" column="sr_id" />
+	<result property="launchDttm" column="launch_dttm" />
+	<result property="completeDttm" column="complete_dttm" />
+</resultMap>
+	
+	<select id="BbsListDAO.getImprvReqMngList"	 parameterClass="egovframework.admin.bbs.service.ImprvReq" resultMap="ImprvReqMng">
+		SELECT A.SEQ,
+	        A.REQ_TIT,
+	        A.REQ_CD,
+	        '' AS REQ_CONT,
+	        A.ORG_NM,
+	        A.USR_CD,
+	        A.USR_ID,
+	        A.USR_NM,
+	        A.PRSS_STATE,
+	        A.PRSS_EXP,
+	        A.DEL_YN,
+	        A.REG_ID,
+	        A.REG_DTTM,
+	        A.UPD_ID,
+	        A.UPD_DTTM,
+	        B.USR_NM AS RECEPTION,
+	        A.SR_ID,
+			CASE WHEN A.PRSS_STATE IN ('14','15','16','17','18') 
+						THEN NVL((SELECT NVL(UPD_DTTM,REG_DTTM) FROM TB_SR_DETL WHERE SEQ = A.SEQ AND PRSS_STATE = '14'),NVL(B.UPD_DTTM,B.REG_DTTM)) 
+					ELSE TO_DATE('','YYYY-MM-DD') END LAUNCH_DTTM,
+			CASE WHEN A.PRSS_STATE = '18' 
+							THEN (SELECT NVL(UPD_DTTM,REG_DTTM) FROM TB_SR_DETL WHERE SEQ = A.SEQ AND PRSS_STATE ='18' ) 
+					WHEN A.PRSS_STATE = '15' 
+							THEN (SELECT NVL(UPD_DTTM,REG_DTTM) FROM TB_SR_DETL WHERE SEQ = A.SEQ AND PRSS_STATE ='15' ) 
+					ELSE TO_DATE('','YYYY-MM-DD') END COMPLETE_DTTM
+   		FROM TB_SR_LIST A LEFT OUTER JOIN TB_SR_DETL B
+   		ON A.SEQ=B.SEQ 
+   		AND A.PRSS_STATE=b.PRSS_STATE
+   		AND B.DETL_SEQ = (SELECT MAX(DETL_SEQ ) FROM TB_SR_DETL WHERE SEQ = A.SEQ AND PRSS_STATE = b.PRSS_STATE)
+   		WHERE A.del_yn = 'N' 
+		
+		<isNotEmpty property="searchWord" >
+			<isEqual property="searchWd" compareValue="title" >
+				AND A.REQ_TIT LIKE '%'||#searchWord#||'%'
+			</isEqual>
+			<isEqual property="searchWd" compareValue="usrNm">
+				AND A.USR_NM LIKE '%'||#searchWord#||'%'
+			</isEqual>
+		</isNotEmpty>
+		
+		<isNotEmpty property="reqCd">
+			AND	A.req_cd = #reqCd#
+		</isNotEmpty>
+		<isNotEmpty property="prssState">
+			AND	A.prss_state = #prssState#
+		</isNotEmpty>
+		
+		 <isNotEmpty property="startDttm">
+		 	<isEmpty property="endDttm">
+ 				<![CDATA[AND	TO_CHAR(A.reg_dttm,'YYYY-MM-DD')  >= #startDttm#]]>
+ 			</isEmpty>
+ 		 </isNotEmpty>
+ 		 <isNotEmpty property="endDttm">
+		 	<isEmpty property="startDttm">
+ 				<![CDATA[AND	TO_CHAR(A.reg_dttm,'YYYY-MM-DD') <= #endDttm#]]>
+ 			</isEmpty>
+ 		 </isNotEmpty>
+ 		 <isNotEmpty property="startDttm">
+		 	<isNotEmpty property="endDttm">
+		 		<![CDATA[AND	TO_CHAR(A.reg_dttm,'YYYY-MM-DD') BETWEEN #startDttm# AND #endDttm#]]>
+ 			</isNotEmpty>
+ 		 </isNotEmpty>
+ 		 
+ 		 ORDER BY A.reg_dttm DESC
+ 		 
+	</select>
+	
+	
+	
+	<insert id="BbsListDAO.insertImprvReqMng" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		INSERT INTO TB_SR_LIST (seq,
+	        req_tit,
+	        req_cd,
+	        req_cont,
+	        org_nm,
+	        usr_cd,
+	        usr_id,
+	        usr_nm,
+	        prss_state,
+	        prss_exp,
+	        del_yn,
+	        reg_id,
+	        reg_dttm)
+ 	VALUES((SELECT NVL(MAX(SEQ),0) + 1 FROM TB_SR_LIST) ,
+	        'empty',
+	        '00',
+	        'empty',
+	        #orgNm#,
+	        #usrCd#,
+	        #usrId#,
+	        #usrNm#,
+	        '10',
+	        #prssExp#,
+	        'Y',
+	        #regId#,
+	        SYSDATE     )
+	</insert>
+	
+	
+	<select id="BbsListDAO.getImprvReqMngSeq" resultClass="java.lang.Integer">
+		SELECT NVL(MAX(SEQ),0) FROM TB_SR_LIST
+	</select>
+	
+	<select id="BbsListDAO.getImprvReqMngSr" resultClass="java.lang.Integer">
+		SELECT LAST_NUMBER 
+		FROM USER_SEQUENCES 
+		WHERE SEQUENCE_NAME = 'SQ_TB_SR_LIST'
+	</select>
+	
+	<select id="BbsListDAO.getImprvReqFileSeq" resultClass="java.lang.Integer">
+		SELECT NVL(MAX(FILE_SEQ),0) FROM TB_SR_FILE
+	</select>
+	
+	<update id="BbsListDAO.updateImprvReqMng" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		UPDATE	TB_SR_LIST 
+		SET	
+				<isNotEmpty property="reqTit">
+				req_tit = #reqTit#,
+				</isNotEmpty>
+				<isNotEmpty property="reqCd">
+				req_cd = #reqCd#,
+				</isNotEmpty>
+				<isNotEmpty property="reqCont">
+				req_cont = #reqCont#,
+				</isNotEmpty>
+				<isNotEmpty property="orgNm">
+				org_nm = #orgNm#,
+				</isNotEmpty>
+				<isNotEmpty property="usrNm">
+				usr_nm = #usrNm#,
+				</isNotEmpty>
+				<isNotEmpty property="prssState">
+				prss_state = #prssState#,
+				</isNotEmpty>
+				<isNotEmpty property="prssExp">
+				prss_exp = #prssExp#,
+				</isNotEmpty>
+				<isNotEmpty property="delYn">
+				del_yn = #delYn#,
+				</isNotEmpty>
+				upd_id = #updId#
+				<isEqual property="delYn" compareValue="N">
+					<isNotEmpty property="srId">
+					,sr_id = 'SR-'||LPAD(SQ_TB_SR_LIST.NEXTVAL,6,'0')
+					</isNotEmpty>
+				</isEqual>
+				<isNotEqual property="delYn" compareValue="N">
+					,upd_dttm = sysdate
+				</isNotEqual>
+		WHERE	seq = #seq#
+	</update>
+	
+	<update id="BbsListDAO.updateImprvReqCancel" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		UPDATE	TB_SR_LIST 
+		SET	prss_state = '13',
+				upd_id = #updId#,
+				upd_dttm = sysdate
+		WHERE	seq = #seq#
+	</update>
+	
+	<resultMap id="ImprvReqMng2" class="egovframework.admin.bbs.service.ImprvReq">
+	<result property="seq" column="seq" />
+	<result property="reqTit" column="req_tit" />
+	<result property="reqCd" column="req_cd" />
+	<result property="reqCont" column="req_cont" />
+	<result property="orgNm" column="org_nm" />
+	<result property="usrCd" column="usr_cd" />
+	<result property="usrId" column="usr_id" />
+	<result property="usrNm" column="usr_nm" />
+	<result property="prssState" column="prss_state" />
+	<result property="prssExp" column="prss_exp" />
+	<result property="delYn" column="del_yn" />
+	<result property="regId" column="reg_id" />
+	<result property="regDttm" column="reg_dttm" />
+	<result property="updId" column="upd_id" />
+	<result property="updDttm" column="upd_dttm" />
+	<result property="srId" column="sr_id" />
+</resultMap>
+	
+	
+	<select id="BbsListDAO.selectImprvReqDtl" parameterClass="egovframework.admin.bbs.service.ImprvReq" resultMap="ImprvReqMng2">
+		SELECT SEQ,
+	        REQ_TIT,
+	        REQ_CD,
+	        REQ_CONT,
+	        ORG_NM,
+	        USR_CD,
+	        USR_ID,
+	        USR_NM,
+	        PRSS_STATE,
+	        PRSS_EXP,
+	        DEL_YN,
+	        REG_ID,
+	        REG_DTTM,
+	        UPD_ID,
+	        UPD_DTTM,
+	        SR_ID
+   		FROM TB_SR_LIST
+   		WHERE del_yn = 'N'
+   		AND SEQ=#seq#
+	</select>
+	
+	<resultMap id="ImprvReqPrss" class="egovframework.admin.bbs.service.ImprvReq">
+		<result property="seq" column="seq" />
+		<result property="prssState" column="prss_state" />
+		<result property="usrNm" column="usr_nm" />
+		<result property="prssCont" column="prss_cont" />
+		<result property="prssExp" column="prss_exp" />
+		<result property="regId" column="reg_id" />
+		<result property="regDttm" column="reg_dttm" />
+		<result property="updId" column="upd_id" />
+		<result property="updDttm" column="upd_dttm" />
+		<result property="detlSeq" column="detl_seq" />
+	</resultMap>
+	
+	<select id="BbsListDAO.getImprvReqPrssList" parameterClass="egovframework.admin.bbs.service.ImprvReq" resultMap="ImprvReqPrss">
+		SELECT	SEQ,
+			PRSS_STATE,
+			DETL_SEQ,
+			USR_NM,
+			PRSS_CONT,
+			PRSS_EXP,
+			REG_ID,
+			REG_DTTM,
+			UPD_ID,
+			UPD_DTTM
+   		FROM TB_SR_DETL
+   		WHERE SEQ=#seq# 
+	</select>
+  	
+  	<insert id="BbsListDAO.insertImprvReqPrss" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		 INSERT INTO TB_SR_DETL (seq,
+		        prss_state,
+		        usr_nm,
+		        prss_cont,
+		        prss_exp,
+		        reg_id,
+		        reg_dttm,
+		        detl_seq
+		        )
+		 VALUES(#seq#,
+		        #prssState#,
+		        #usrNm#,
+		        #prssCont#,
+		        #prssExp#,
+		        #regId#,
+		        SYSDATE,
+		        (SELECT NVL(MAX(DETL_SEQ),0)+1 FROM TB_SR_DETL WHERE SEQ = #seq#)
+		        )
+	</insert>
+	
+	<update id="BbsListDAO.updateImprvReqListPrss" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		UPDATE TB_SR_LIST
+		    SET PRSS_STATE = #prssState#
+		WHERE SEQ = #seq#
+		
+	</update>
+  	
+  	<update id="BbsListDAO.updateImprvReqPrss" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		UPDATE	TB_SR_DETL
+			SET	prss_state = #prssState#,
+				usr_nm = #usrNm#,
+				prss_cont = #prssCont#,
+				prss_exp = #prssExp#,
+				upd_id = #updId#,
+				upd_dttm = SYSDATE
+			WHERE	seq=#seq# 
+				AND prss_state = #prePrssState#
+				AND detl_seq = #detlSeq#
+		
+	</update>
+	
+	<delete id="BbsListDAO.deleteImprvReqPrss" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		DELETE
+		FROM TB_SR_DETL
+		WHERE SEQ=#seq# 
+		AND PRSS_STATE=#prssState#
+		AND DETL_SEQ=#detlSeq#
+	</delete>
+	
+	<update id="BbsListDAO.updateImprvReqDeletePrss" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		UPDATE TB_SR_LIST A
+		    SET PRSS_STATE = NVL((SELECT MAX(PRSS_STATE) FROM TB_SR_DETL WHERE SEQ = A.SEQ),'00')
+		WHERE A.SEQ = #seq#
+	</update>
+	
+	<insert id="BbsListDAO.saveImprvReqFileData" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+		 INSERT INTO TB_SR_FILE (seq,
+		        file_seq,
+		        file_tag,
+		        prss_state,
+		        src_file_nm,
+		        save_file_nm,
+		        view_file_nm,
+				file_size,
+				file_ext,
+				reg_id,
+				reg_dttm,
+				detl_seq
+				)
+		 VALUES(#seq#,
+		        #fileSeq#,
+		        #fileTag#,
+		        #prssState#,
+		        #srcFileNm#,
+		        #saveFileNm#,
+		        #viewFileNm#,
+		        #fileSize#,
+		        #fileExt#,
+		        #regId#,
+		        SYSDATE,
+		        #detlSeq#
+		        )
+	</insert>
+	
+	<resultMap id="ImprvReqFile" class="egovframework.admin.bbs.service.ImprvReq">
+		<result property="seq" column="seq" />
+		<result property="fileSeq" column="file_seq" />
+		<result property="fileTag" column="file_tag" />
+		<result property="prssState" column="prss_state" />
+		<result property="viewFileNm" column="view_file_nm" />
+		<result property="fileSize" column="file_size" />
+		<result property="regDttm" column="reg_dttm" />
+		<result property="saveFileNm" column="save_file_nm" />
+		<result property="detlSeq" column="detl_seq" />
+	</resultMap>
+	
+	<select id="BbsListDAO.getImprvReqFileList" parameterClass="egovframework.admin.bbs.service.ImprvReq" resultMap="ImprvReqFile">
+		SELECT	SEQ,
+			FILE_SEQ,
+			FILE_TAG,
+			PRSS_STATE,
+			VIEW_FILE_NM,
+			FILE_SIZE,
+			REG_DTTM,
+			SAVE_FILE_NM,
+			DETL_SEQ
+		FROM	TB_SR_FILE
+		WHERE	SEQ = #seq#
+		AND	FILE_TAG = #fileTag#
+	</select>
+	
+	<select id="BbsListDAO.getImprvReqFile" parameterClass="egovframework.admin.bbs.service.ImprvReq" resultMap="ImprvReqFile">
+		SELECT	SEQ,
+			FILE_SEQ,
+			FILE_TAG,
+			PRSS_STATE,
+			VIEW_FILE_NM,
+			FILE_SIZE,
+			REG_DTTM,
+			SAVE_FILE_NM,
+			DETL_SEQ
+		FROM	TB_SR_FILE
+		WHERE	 FILE_SEQ = #fileSeq#
+	</select>
+	
+	<delete id="BbsListDAO.deleteImprvReqFile" parameterClass="egovframework.admin.bbs.service.ImprvReq">
+	DELETE FROM	TB_SR_FILE
+		WHERE	 FILE_SEQ = #fileSeq#
+	</delete>
+  	
+</sqlMap>
